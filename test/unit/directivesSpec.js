@@ -1,19 +1,24 @@
 'use strict';
 
-/* jasmine specs for directives go here */
+describe('directives', function () {
+    beforeEach(module('myApp.directives'));
 
-describe('directives', function() {
-  beforeEach(module('myApp.directives'));
+    describe('clearSearch', function () {
+        it('should clear search box when click clear button', inject(function ($rootScope, $compile) {
+            var scope = $rootScope.$new();
 
-  describe('app-version', function() {
-    it('should print current version', function() {
-      module(function($provide) {
-        $provide.value('version', 'TEST_VER');
-      });
-      inject(function($compile, $rootScope) {
-        var element = $compile('<span app-version></span>')($rootScope);
-        expect(element.text()).toEqual('TEST_VER');
-      });
+            var html = '<input type="text"/><button type="button" clear-search></button>';
+            var element = $compile(html)(scope);
+
+            var val = spyOn(jQuery.fn, 'val');
+            var prev = spyOn(jQuery.fn, 'prev');
+
+            element.filter('input').val('some value');
+            element.filter('button').trigger('click');
+
+            expect(val).toHaveBeenCalled();
+
+            expect(val.mostRecentCall.args[0]).toBe('');
+        }));
     });
-  });
 });

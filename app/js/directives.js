@@ -4,8 +4,13 @@
 
 
 angular.module('myApp.directives', []).
-  directive('appVersion', ['version', function(version) {
-    return function(scope, elm, attrs) {
-      elm.text(version);
-    };
-  }]);
+    directive('clearSearch', [function () {
+        return {
+            link: function (scope, element, attr) {
+                var searchBox = element.prev();
+                element.click(function () {
+                    searchBox.val('');
+                });
+            }
+        }
+    }]);
