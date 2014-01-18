@@ -1,8 +1,5 @@
 'use strict';
 
-/* Directives */
-
-
 angular.module('myApp.directives', []).
     directive('clearSearch', [function () {
         return {
@@ -13,4 +10,25 @@ angular.module('myApp.directives', []).
                 });
             }
         }
-    }]);
+    }]).directive('readRight', function() {
+        return {
+            link: function(scope, element, attr) {
+                element.click(function() {
+                    scope.readRight = true;
+                });
+            }
+        };
+    })
+    .directive('addFruit', function () {
+        return {
+            scope: {
+                fruits: '=',
+                newFruit: '='
+            },
+            link: function (scope, element, attr) {
+                element.click(function () {
+                    scope.fruits.push(scope.newFruit);
+                });
+            }
+        };
+    });

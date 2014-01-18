@@ -1,16 +1,22 @@
 'use strict';
 
-/* jasmine specs for controllers go here */
-
 describe('controllers', function(){
   beforeEach(module('myApp.controllers'));
 
+    describe('FruitController', function () {
+        var scope = {};
+        beforeEach(inject(function($rootScope, $controller){
+            scope = $rootScope.$new();
+            $controller('FruitController', {
+                $scope: scope
+            });
+        }));
 
-  it('should ....', inject(function() {
-    //spec body
-  }));
+        it('should init fruit list', function() {
+            scope.init();
 
-  it('should ....', inject(function() {
-    //spec body
-  }));
+            expect(scope.fruits).toEqual([]);
+        });
+    });
+
 });
