@@ -13,10 +13,13 @@
 </div>
 <hr>
 
-<div ng-controller="FruitController">
+<div ng-controller="FruitController" ng-init="init()">
     <h4>Model manipulation with isolated scope</h4>
     <span>What's your favorite fruit</span>
-    <label for="fruit"></label><input type="text" name="fruit" id="fruit"/>
-    <button type="button">Add</button>
+    <label for="fruit"></label><input type="text" name="fruit" id="fruit" ng-model="newFruit"/>
+    <button type="button" add-fruit fruits="fruits" new-fruit="newFruit">Add</button>
+    <ul>
+        <li ng-repeat="fruit in fruits">{{fruit}}</li>
+    </ul>
 </div>
 <hr>

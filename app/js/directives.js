@@ -28,6 +28,7 @@ angular.module('myApp.directives', []).
             link: function (scope, element, attr) {
                 element.click(function () {
                     scope.fruits.push(scope.newFruit);
+                    scope.$apply();
                 });
             }
         };
