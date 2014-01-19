@@ -40,4 +40,14 @@ angular.module('myApp.directives', []).
               });
           }
         };
+    }).directive('addFruitMethod', function() {
+        return {
+            link: function(scope, element, attr) {
+                element.click(function () {
+                    if (scope.isValid(scope.newFruit)) {
+                        scope.fruits.push(scope.newFruit);
+                    }
+                });
+            }
+        };
     });

@@ -56,6 +56,39 @@ describe('directives', function () {
         });
     });
 
+    describe('addFruitMethod', function () {
+        var $scope, element;
+        beforeEach(inject(function ($rootScope, $compile) {
+            $scope = $rootScope;
+            $scope.fruits = [];
+            $scope.newFruit = 'apple';
+            $scope.isValid = new Function();
+
+            element = angular.element('<input type="text" name="fruit" id="fruitDefault" ng-model="newFruit"/><button type="button" add-fruit-method>validate and add</button>');
+            $compile(element)($scope);
+        }));
+
+        it('should add valid fruit to fruit list when click button', function () {
+            var isValid = spyOn($scope, 'isValid').andReturn(true);
+
+            element.filter('button').trigger('click');
+
+            expect(isValid).toHaveBeenCalled();
+            expect($scope.fruits[0]).toBe('apple');
+
+        });
+
+        it('should reject invalid fruit when click button', function () {
+            var isValid = spyOn($scope, 'isValid').andReturn(false);
+
+            element.filter('button').trigger('click');
+
+            expect(isValid).toHaveBeenCalled();
+            expect($scope.fruits.length).toBe(0);
+
+        });
+    });
+
     describe('readRight', function () {
         var $scope, element;
         beforeEach(inject(function ($rootScope, $compile) {

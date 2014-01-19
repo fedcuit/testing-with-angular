@@ -9,8 +9,7 @@
 
 <div ng-controller="FruitController" ng-init="init()">
     <h4>Model manipulation with default scope</h4>
-    <span>What's your favorite fruit</span>
-    <label for="fruitDefault"></label><input type="text" name="fruit" id="fruitDefault" ng-model="newFruit"/>
+    <label>What's your favorite fruit</label><input type="text" ng-model="newFruit"/>
     <button type="button" add-fruit-default>Add</button>
     <ul>
         <li ng-repeat="fruit in fruits track by $index">{{fruit}}</li>
@@ -20,9 +19,18 @@
 
 <div ng-controller="FruitController" ng-init="init()">
     <h4>Model manipulation with isolated scope</h4>
-    <span>What's your favorite fruit</span>
-    <label for="fruit"></label><input type="text" name="fruit" id="fruit" ng-model="newFruit"/>
+    <label>What's your favorite fruit</label><input type="text" ng-model="newFruit"/>
     <button type="button" add-fruit fruits="fruits" new-fruit="newFruit">Add</button>
+    <ul>
+        <li ng-repeat="fruit in fruits track by $index">{{fruit}}</li>
+    </ul>
+</div>
+<hr>
+
+<div ng-controller="FruitController" ng-init="init()">
+    <h4>Model manipulation with isolated scope</h4>
+    <label>What's your favorite fruit(name can only contains letter)</label><input type="text" ng-model="newFruit"/>
+    <button type="button" add-fruit-method>validate and add</button>
     <ul>
         <li ng-repeat="fruit in fruits track by $index">{{fruit}}</li>
     </ul>
