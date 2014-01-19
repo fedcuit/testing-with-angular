@@ -28,9 +28,21 @@
 <hr>
 
 <div ng-controller="FruitController" ng-init="init()">
-    <h4>Model manipulation with isolated scope</h4>
+    <h4>Call controller method in default scope</h4>
     <label>What's your favorite fruit(name can only contains letter)</label><input type="text" ng-model="newFruit"/>
     <button type="button" add-fruit-method>validate and add</button>
+    <ul>
+        <li ng-repeat="fruit in fruits track by $index">{{fruit}}</li>
+    </ul>
+</div>
+<hr>
+
+<div ng-controller="FruitController" ng-init="init()">
+    <h4>Call controller method via isolated scope</h4>
+    <label>What's your favorite fruit(name can only contains letter)</label><input type="text" ng-model="newFruit"/>
+    <button type="button" add-fruit-method-isolated is-valid="isValid(name)" new-fruit="newFruit" fruits="fruits">
+        validate and add
+    </button>
     <ul>
         <li ng-repeat="fruit in fruits track by $index">{{fruit}}</li>
     </ul>

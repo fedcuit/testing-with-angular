@@ -89,19 +89,29 @@ describe('directives', function () {
         });
     });
 
-    describe('readRight', function () {
+    describe('addFruitMethodIsolated', function () {
         var $scope, element;
         beforeEach(inject(function ($rootScope, $compile) {
             $scope = $rootScope;
-            element = angular.element('<button read-right>I know my rights</button>');
+            $scope.fruits = [];
+            $scope.newFruit = 'apple';
+            $scope.isValid = angular.noop;
+
+            element = angular.element('<input type="text" ng-model="newFruit"/>' +
+                '<button type="button" add-fruit-method-isolated is-valid="isValid(name)" new-fruit="newFruit" fruits="fruits">validate and add</button>');
 
             $compile(element)($scope);
         }));
 
-        it('should mark as right read when click button', function () {
-            element.trigger('click');
+        it('should add valid fruit to fruit list when click button', function () {
+            var isValid = spyOn($scope, 'isValid').andReturn(true);
 
-            expect($scope.readRight).toBeTruthy();
+            element.filter('button').trigger('click');
+
+            expect(isValid).toHaveBeenCalled();
+            console.log(isValid.mostRecentCall);
+            expect(isValid.mostRecentCall.args[0]).toBe('apple');
+            expect($scope.fruits[0]).toBe('apple');
         });
-    })
+    });
 });
