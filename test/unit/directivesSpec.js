@@ -85,7 +85,6 @@ describe('directives', function () {
 
             expect(isValid).toHaveBeenCalled();
             expect($scope.fruits.length).toBe(0);
-
         });
     });
 
@@ -109,7 +108,6 @@ describe('directives', function () {
             element.filter('button').trigger('click');
 
             expect(isValid).toHaveBeenCalled();
-            console.log(isValid.mostRecentCall);
             expect(isValid.mostRecentCall.args[0]).toBe('apple');
             expect($scope.fruits[0]).toBe('apple');
         });
