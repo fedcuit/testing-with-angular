@@ -11,4 +11,9 @@ angular.module('myApp.controllers', []).
         $scope.init = function () {
             $scope.fruits = [];
         };
+    }])
+    .controller('DefaultFruitController', ['$scope', function ($scope) {
+        $scope.init = function () {
+            $scope.fruits = [];
+        };
     }]);

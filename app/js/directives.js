@@ -10,16 +10,15 @@ angular.module('myApp.directives', []).
                 });
             }
         }
-    }]).directive('readRight', function() {
+    }]).directive('readRight',function () {
         return {
-            link: function(scope, element, attr) {
-                element.click(function() {
+            link: function (scope, element, attr) {
+                element.click(function () {
                     scope.readRight = true;
                 });
             }
         };
-    })
-    .directive('addFruit', function () {
+    }).directive('addFruit', function () {
         return {
             scope: {
                 fruits: '=',
@@ -31,5 +30,14 @@ angular.module('myApp.directives', []).
                     scope.$apply();
                 });
             }
+        };
+    }).directive('addFruitDefault', function() {
+        return {
+          link: function(scope, element, atrr) {
+              element.click(function () {
+                  scope.fruits.push(scope.newFruit);
+                  scope.$apply();
+              });
+          }
         };
     });

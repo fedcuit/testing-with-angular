@@ -29,13 +29,31 @@ describe('directives', function () {
 
             $compile(element)($rootScope);
         }));
-        it('should add fruit to fruit list', function () {
+        it('should add fruit to fruit list when click button', function () {
             element.filter('button').trigger('click');
 
             // test both default scope and isolated scope is updated
             expect(element.scope().fruits[0]).toBe('apple'); // use element.scope() to access isolated scope
             expect($scope.fruits[0]).toBe('apple');
         })
+    });
+
+    describe('addFruitDefault', function () {
+        var $scope, element;
+        beforeEach(inject(function ($rootScope, $compile) {
+            $scope = $rootScope;
+            $scope.fruits = [];
+            $scope.newFruit = 'apple';
+
+            element = angular.element('<input type="text" name="fruit" id="fruitDefault" ng-model="newFruit"/><button type="button" add-fruit-default>Add</button>');
+            $compile(element)($scope);
+        }));
+
+        it('should add fruit to fruit list when click button', function () {
+            element.filter('button').trigger('click');
+
+            expect($scope.fruits[0]).toBe('apple');
+        });
     });
 
     describe('readRight', function () {

@@ -7,9 +7,14 @@
 </div>
 <hr>
 
-<div>
+<div ng-controller="FruitController" ng-init="init()">
     <h4>Model manipulation with default scope</h4>
-    <button read-right>I know my rights</button>
+    <span>What's your favorite fruit</span>
+    <label for="fruitDefault"></label><input type="text" name="fruit" id="fruitDefault" ng-model="newFruit"/>
+    <button type="button" add-fruit-default>Add</button>
+    <ul>
+        <li ng-repeat="fruit in fruits track by $index">{{fruit}}</li>
+    </ul>
 </div>
 <hr>
 
@@ -19,7 +24,7 @@
     <label for="fruit"></label><input type="text" name="fruit" id="fruit" ng-model="newFruit"/>
     <button type="button" add-fruit fruits="fruits" new-fruit="newFruit">Add</button>
     <ul>
-        <li ng-repeat="fruit in fruits">{{fruit}}</li>
+        <li ng-repeat="fruit in fruits track by $index">{{fruit}}</li>
     </ul>
 </div>
 <hr>
